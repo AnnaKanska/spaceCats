@@ -1,11 +1,12 @@
 h1 {
-    color: red;
-  }
+  color: grey;
+}
 
 body {
-  background-image: url('../src/assets/space_background.jpg');
+  background-image: url("../src/assets/space_background.jpg");
 }
 
 h3 {
   color: white;
+  background-color: gray;
 }
