@@ -1,27 +1,30 @@
 import React from "react";
-//import styles from './styles.css';
+import Modal from "react-modal";
+
+const customStyles = {
+  content: {
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)"
+  }
+};
 
 class CatsView extends React.Component {
   constructor(props) {
     super(props);
-
-    this.handleShow = this.handleShow.bind(this);
-    this.handleHide = this.handleHide.bind(this);
-
     this.state = {
       error: false,
       cats: {},
       featured: 0,
-      show: false
+      modalIsOpen: false
     };
-  }
 
-  handleShow() {
-    this.setState({ show: true });
-  }
-
-  handleHide() {
-    this.setState({ show: false });
+    this.openModal = this.openModal.bind(this);
+    // this.afterOpenModal = this.afterOpenModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
   }
 
   componentDidMount() {
@@ -47,41 +50,45 @@ class CatsView extends React.Component {
     });
   }
 
+  openModal() {
+    this.setState({ modalIsOpen: true });
+  }
+
+  // afterOpenModal() {
+  //   // references are now sync'd and can be accessed.
+  //   this.subtitle.style.color = "#f00";
+  // }
+
+  closeModal() {
+    this.setState({ modalIsOpen: false });
+  }
+
   render() {
     let gats = this.state.cats;
+    console.log(gats[0]);
     let catPhotos = [];
     for (let key in gats) {
       catPhotos.push(
-        <img
-          key={key}
-          src={gats[key].media.photos.photo[3].$t}
-          onClick={this.handleShow()}
-        />
+        <img key={key} src={gats[key].media.photos.photo[0].$t} />
       );
     }
 
     return (
       <div>
-        <div>{catPhotos}</div>
+        <div onClick={this.openModal} className="catList">
+          {catPhotos}
+        </div>
         <div>
           <Modal
-            {...this.props}
-            show={this.state.show}
-            onHide={this.handleHide}
-            dialogClassName="custom-modal"
+            ariaHideApp={false}
+            isOpen={this.state.modalIsOpen}
+            onRequestClose={this.closeModal}
+            style={customStyles}
+            contentLabel="Space Cat Modal"
           >
-            <Modal.Header closeButton>
-              <Modal.Title id="contained-modal-title-lg">
-                Modal heading
-              </Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              <img />
-              <p>modal here</p>
-            </Modal.Body>
-            <Modal.Footer>
-              <Button onClick={this.handleHide}>Close</Button>
-            </Modal.Footer>
+            <h2>Hello</h2>
+
+            <div>I am a modal</div>
           </Modal>
         </div>
       </div>
