@@ -65,20 +65,17 @@ class CatsView extends React.Component {
 
   render() {
     let gats = this.state.cats;
-    console.log(gats[0]);
-    let catPhotos = [];
-    for (let key in gats) {
-      catPhotos.push(
-        <img key={key} src={gats[key].media.photos.photo[0].$t} />
-      );
-    }
-
-    return (
-      <div>
-        <div onClick={this.openModal} className="catList">
-          {catPhotos}
-        </div>
-        <div>
+    // console.log(gats[2]);
+    let catList = [];
+    for (let i in gats) {
+      catList.push(
+        <div key={i}>
+          <div
+            onClick={() => this.addFeatured(i)}
+            onClick={() => this.openModal()}
+          >
+            <img src={gats[i].media.photos.photo[1].$t} />
+          </div>
           <Modal
             ariaHideApp={false}
             isOpen={this.state.modalIsOpen}
@@ -87,10 +84,20 @@ class CatsView extends React.Component {
             contentLabel="Space Cat Modal"
           >
             <h2>Hello</h2>
-
-            <div>I am a modal</div>
+            <div>
+              <img src={gats[i].media.photos.photo[0].$t} />
+              <p>{gats[i].description.$t}</p>
+            </div>
+            <button onClick={this.closeModal}>close</button>
           </Modal>
         </div>
+      );
+
+      // console.log(gats[this.state.featured].name.$t);
+    }
+    return (
+      <div>
+        <div className="catList">{catList}</div>
       </div>
     );
   }
