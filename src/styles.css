@@ -1,12 +1,86 @@
 h1 {
-  color: grey;
+  color: black;
+  font-family: "Permanent Marker", cursive;
+  font-size: 70px;
+  margin: 10px;
 }
 
 body {
-  background-image: url("../src/assets/space_background.jpg");
+  background-image: url("https://pi.tedcdn.com/r/tedideas.files.wordpress.com/2017/06/featured_art_solarsystemswater.jpg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: auto;
+  /* cursor: url("../src/assets/cat2.png"), 2 2, auto; */
 }
 
-h3 {
+h3,
+p {
+  font-family: "PT Sans", sans-serif;
+  color: black;
+  width: 60%;
+  text-align: center;
+  margin: auto;
+  padding-top: 5%;
+}
+#turning_planet img {
+  width: 220px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5%;
+}
+.small-cat {
+  width: 55px;
+}
+#smaller {
+  width: 85px;
+}
+
+#title .small-cat,
+#titlecats {
+  display: inline-grid;
+}
+#title {
+  margin-left: 30%;
+}
+#test_title {
+  margin-left: 40%;
+}
+select {
+  margin: auto;
+  display: block;
+  width: 42%;
+  height: 25px;
+  background-color: #376193;
   color: white;
-  background-color: gray;
+  font-family: "PT Sans", sans-serif;
+  border: none;
+}
+
+input {
+  background-color: #7f98ab;
+  width: 70px;
+  height: 20px;
+  border: none;
+}
+::placeholder {
+  color: white;
+  text-align: center;
+}
+#submit_button {
+  width: 50px;
+}
+
+#submit input,
+#submit_button {
+  display: block;
+  margin: auto;
+}
+
+.catlist {
+  margin: auto;
+  padding: 5px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
 }
