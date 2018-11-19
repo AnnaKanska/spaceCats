@@ -21,9 +21,6 @@ class CatsView extends React.Component {
       featured: 0,
       modalIsOpen: false
     };
-
-    this.openModal = this.openModal.bind(this);
-    // this.afterOpenModal = this.afterOpenModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
   }
 
@@ -44,14 +41,13 @@ class CatsView extends React.Component {
       });
   }
 
-  addFeatured(i) {
+  addFeatured(e, index) {
+    e.preventDefault();
+    console.log(index, "index of add featured");
     this.setState({
-      featured: i
+      featured: index,
+      modalIsOpen: true
     });
-  }
-
-  openModal() {
-    this.setState({ modalIsOpen: true });
   }
 
   // afterOpenModal() {
@@ -65,35 +61,14 @@ class CatsView extends React.Component {
 
   render() {
     let gats = this.state.cats;
-    // console.log(gats[2]);
     let catList = [];
+
     for (let i in gats) {
       catList.push(
-        <div key={i}>
-          <div
-            onClick={() => this.addFeatured(i)}
-            onClick={() => this.openModal()}
-          >
-            <img src={gats[i].media.photos.photo[1].$t} />
-          </div>
-          <Modal
-            ariaHideApp={false}
-            isOpen={this.state.modalIsOpen}
-            onRequestClose={this.closeModal}
-            style={customStyles}
-            contentLabel="Space Cat Modal"
-          >
-            <h2>Hello</h2>
-            <div>
-              <img src={gats[i].media.photos.photo[0].$t} />
-              <p>{gats[i].description.$t}</p>
-            </div>
-            <button onClick={this.closeModal}>close</button>
-          </Modal>
+        <div key={i} onClick={e => this.addFeatured(e, i)}>
+          <img src={gats[i].media.photos.photo[1].$t} />
         </div>
       );
-
-      // console.log(gats[this.state.featured].name.$t);
     }
     return (
       <div>
